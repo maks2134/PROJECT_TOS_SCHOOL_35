@@ -1,29 +1,29 @@
 'use strict';
 
 
-var sliderId = 0;
+let sliderId = 0;
 
-var prevSlider = 'slider-1';
+let prevSlider = 'slider-1';
 
-var sliderColors = [ 'bg-green', 'bg-blue', 'bg-light-brown' ];
+let sliderColors = [ 'bg-green', 'bg-blue', 'bg-light-brown' ];
 
 // поддержка LocalStorage
-var isStorageSupport = true;
+let isStorageSupport = true;
 
 // Логин пользователя сохраненный в LocalStorage
-var storageLogin = '';
+let storageLogin = '';
 
 // элементы меню
-var formSearch = document.querySelector(".form-search");
-var searchField = formSearch.querySelector("[name='seach-text']");
-var buttonAuth = document.querySelector(".login-link");
-var userAuth = document.querySelector(".user-auth");
-var loginField = userAuth.querySelector("[name='user-login']");
-var paswdField = userAuth.querySelector("[name='user-password']");
-var buttonBasket = document.querySelector(".basket")
-var basket = document.querySelector(".basket-popup");
-var formSubscribe = document.querySelector(".form-subscribe");
-var formFeedback = document.querySelector(".form-feedback");
+let formSearch = document.querySelector(".form-search");
+let searchField = formSearch.querySelector("[name='seach-text']");
+let buttonAuth = document.querySelector(".login-link");
+let userAuth = document.querySelector(".user-auth");
+let loginField = userAuth.querySelector("[name='user-login']");
+let paswdField = userAuth.querySelector("[name='user-password']");
+let buttonBasket = document.querySelector(".basket")
+let basket = document.querySelector(".basket-popup");
+let formSubscribe = document.querySelector(".form-subscribe");
+let formFeedback = document.querySelector(".form-feedback");
 
 
 try {
@@ -76,21 +76,21 @@ paswdField.addEventListener("input", evtFieldInputValidation );
 if( formSubscribe ) {
   formSubscribe.addEventListener("submit", evtSubscribeValidation );
   // проверка полей формы авторизации при изменении
-  var subscribeField = formSubscribe.querySelector("[name='subscribe-mail']");
+  let subscribeField = formSubscribe.querySelector("[name='subscribe-mail']");
   subscribeField.addEventListener("input", evtFieldInputValidation );
 }
 
 // показ формы обратной связи
 if( formFeedback ) {
-  var buttonFeedback = document.querySelector(".our-adress button");
+  let buttonFeedback = document.querySelector(".our-adress button");
   buttonFeedback.addEventListener('click', evtButtonFeedbackClick);
 
   // валидация формы обратной связи при отправлении
   formFeedback.addEventListener("submit", evtFeedbackValidation );
 
-  var feedbackNameField = formFeedback.querySelector("[name='feedback-name']");
-  var feedbackMailField = formFeedback.querySelector("[name='feedback-mail']");
-  var feedbackMessField = formFeedback.querySelector("[name='feedback-message']");
+  let feedbackNameField = formFeedback.querySelector("[name='feedback-name']");
+  let feedbackMailField = formFeedback.querySelector("[name='feedback-mail']");
+  let feedbackMessField = formFeedback.querySelector("[name='feedback-message']");
   // проверка полей формы авторизации при изменении
   feedbackNameField.addEventListener("input", evtFieldInputValidation );
   feedbackMailField.addEventListener("input", evtFieldInputValidation );
@@ -102,22 +102,22 @@ if(basket) {
   buttonBasket.addEventListener("focus", function() {
     basket.classList.remove("showed");
   });
-  var basketOrder = basket.querySelector('.button:last-child').addEventListener("blur", function() {
+  let basketOrder = basket.querySelector('.button:last-child').addEventListener("blur", function() {
     basket.classList.remove("showed");
   });
 }
 // скрытие авторизации по ESC
-var catalogMenu = document.querySelector(".catalog-menu");
-var catalogMenuLink = document.querySelector(".catalog-menu li:last-child a");
+let catalogMenu = document.querySelector(".catalog-menu");
+let catalogMenuLink = document.querySelector(".catalog-menu li:last-child a");
 catalogMenuLink.addEventListener("blur", function() {
   document.querySelector(".main-menu li:first-child a").classList.remove("menu-item-hover");
   catalogMenu.classList.remove("showed");
 });
 
 // удаление элементов корзины
-var basketPopup = document.querySelector('.basket-popup');
+let basketPopup = document.querySelector('.basket-popup');
 if( basketPopup ) {
-  var buttonBasketDelete = basketPopup.querySelectorAll(".product-rm");
+  let buttonBasketDelete = basketPopup.querySelectorAll(".product-rm");
     if(buttonBasketDelete.length) {
       buttonBasketDelete.forEach( function(basketDelete) {
         basketDelete.addEventListener("click", evtBasketDeleteClick);
@@ -128,11 +128,11 @@ if( basketPopup ) {
 /**
  * Работа двойного ползунка range + доступность
 */
-var blockPrice = document.querySelector(".price-by");
-var priceFrom = document.querySelector("#filter-price-from");
-var labelFrom = document.querySelector(".label-price-from");
-var priceTo = document.querySelector("#filter-price-to");
-var labelTo = document.querySelector(".label-price-to");
+let blockPrice = document.querySelector(".price-by");
+let priceFrom = document.querySelector("#filter-price-from");
+let labelFrom = document.querySelector(".label-price-from");
+let priceTo = document.querySelector("#filter-price-to");
+let labelTo = document.querySelector(".label-price-to");
 // расчет для цены от 100р до 500р
 const PRICE_MIN = 100;
 const PRICE_MAX = 500;
@@ -140,7 +140,7 @@ const PRICE_DIAPAZON = PRICE_MAX - PRICE_MIN;
 const RANGE_MARGIN = 21;
 const RANGE_WIDTH = 176;
 if( blockPrice ) {
-  var priceRange = document.createElement("div");
+  let priceRange = document.createElement("div");
   priceRange.className = "price-range";
   blockPrice.appendChild(priceRange);
 
@@ -167,9 +167,9 @@ if( blockPrice ) {
   priceTo.addEventListener("input", changePriceTo);
 }
 
-var blockFat = document.querySelector(".filter-form ul.fat");
+let blockFat = document.querySelector(".filter-form ul.fat");
 if( blockFat ){
-  var fieldsFat = blockFat.querySelectorAll(".input-type [type='radio']");
+  let fieldsFat = blockFat.querySelectorAll(".input-type [type='radio']");
   if(fieldsFat.length) {
     fieldsFat.forEach( function(elem) {
       elem.addEventListener("focus", function() {
@@ -181,9 +181,9 @@ if( blockFat ){
     });
   }
 }
-var blockFiller = document.querySelector(".filter-form ul.fillers");
+let blockFiller = document.querySelector(".filter-form ul.fillers");
 if( blockFiller ){
-  var fieldsFiller = blockFiller.querySelectorAll(".input-type [type='checkbox']");
+  let fieldsFiller = blockFiller.querySelectorAll(".input-type [type='checkbox']");
   if(fieldsFiller.length) {
     fieldsFiller.forEach( function(elem) {
       elem.addEventListener("focus", function() {
@@ -198,7 +198,7 @@ if( blockFiller ){
 
 /* обработчик изменения ползунка цены ОТ */
 function changePriceFrom() {
-  var range = priceTo.value - priceFrom.value;
+  let range = priceTo.value - priceFrom.value;
   if( range < 0) {
     priceFrom.value = priceTo.value;
     range = 0;
@@ -211,7 +211,7 @@ function changePriceFrom() {
 
 /* обработчик изменения ползунка цены ДО */
 function changePriceTo() {
-  var range = priceTo.value - priceFrom.value;
+  let range = priceTo.value - priceFrom.value;
   if( range < 0) {
     priceTo.value = priceFrom.value;
     range = 0;
@@ -228,7 +228,7 @@ function sliderInit() {
   // sliderId = 1 пропускаем, т.к. он по умолчанию и обрабатывать не нужно
   if(sliderId > 1) {
     /* устанавливаем последний выбранный слайдер */
-    var slider = document.querySelector('#slider-' + sliderId);
+    let slider = document.querySelector('#slider-' + sliderId);
     if(slider) {
       slider.checked = true;  
     }
@@ -243,9 +243,9 @@ function sliderInit() {
  * сохраняет последний слайдер в localStorage для последующей установки фонового цвета
  */
 function setSliderListeners() {
-  var sliders = document.querySelectorAll("input[name='slider']");
+  let sliders = document.querySelectorAll("input[name='slider']");
   if(sliders) {
-    for (var i = 0; i < sliders.length; i++) {
+    for (let i = 0; i < sliders.length; i++) {
       sliders[i].addEventListener("change", function(event) {
         setBackground( event.target.id[7] );
         if( isStorageSupport ) {
@@ -283,10 +283,10 @@ function evtWindowKeydown(event) {
   }
   // пробел
   if( event.keyCode === 32 ) {
-    var showSearch = event.target.classList.contains('button-search');
-    var showLogin = event.target.classList.contains('login-link');
-    var showBasket = event.target.classList.contains('basket-link');
-    var buttonCatalog = !!( event.target.nextElementSibling &&
+    let showSearch = event.target.classList.contains('button-search');
+    let showLogin = event.target.classList.contains('login-link');
+    let showBasket = event.target.classList.contains('basket-link');
+    let buttonCatalog = !!( event.target.nextElementSibling &&
       event.target.nextElementSibling.classList.contains('catalog-menu') );
 
     /* показ подменю*/
@@ -322,7 +322,7 @@ function evtWindowKeydown(event) {
 function evtButtonFeedbackClick() {
   formFeedback.classList.remove('hidden');
   formFeedback.querySelector("#feedback-name").focus();
-  var feedbackClose = formFeedback.querySelector('.button-close');
+  let feedbackClose = formFeedback.querySelector('.button-close');
   feedbackClose.addEventListener('click', function(){
     formFeedback.classList.add('hidden');
   });
@@ -343,7 +343,7 @@ function evtFormSearchSubmitValidation(event) {
  * удаление класса для индикации ошибки при изменении и не пустом значении
  */
 function evtFieldInputValidation(event) {
-  var target = '';
+  let target = '';
   switch(event.target.name) {
     case "seach-text":
       target = searchField;
@@ -437,30 +437,30 @@ function showEventError(target) {
 
 /* обработчик удаление элементов корзины */
 function evtBasketDeleteClick(event) {
-  var tr = event.target.closest("tr");
+  let tr = event.target.closest("tr");
   tr.remove();
 
   /* пересчитываем корзину */
   if (!basketPopup) {
     return false;
   }
-  var basketSum = 0;
-  var basketCount = 0;
-  var productSum = basketPopup.querySelectorAll(".basket-list .product-sum");
+  let basketSum = 0;
+  let basketCount = 0;
+  let productSum = basketPopup.querySelectorAll(".basket-list .product-sum");
   if(productSum.length) {
     productSum.forEach( function(elem) {
       basketCount++;
-      var sum = elem.innerText.slice(0, elem.innerText.indexOf(' руб.'));
+      let sum = elem.innerText.slice(0, elem.innerText.indexOf(' руб.'));
       sum = sum.replace(/\s/g, '');
       basketSum += +sum;
     });
   }
 
   /* показываем изменения */
-  var basketButton = document.querySelector(".main-nav .basket");
+  let basketButton = document.querySelector(".main-nav .basket");
 
   if( basketSum || basketCount ) {
-    var orderSum = basketPopup.querySelectorAll(".basket-sum span");
+    let orderSum = basketPopup.querySelectorAll(".basket-sum span");
     orderSum[0].innerText = basketSum;
 
     basketButton.querySelector(".basket-link").innerText = basketCount + " товар";
@@ -485,9 +485,9 @@ function isVisible(element) {
  * Динамическая загрузка гугл-карты и замена статичного jpg в модальном окне карты
  */
 function showFrameMap() {
-  var officeMap = document.querySelector(".office-map .map");
+  let officeMap = document.querySelector(".office-map .map");
   if( officeMap ) {
-    var frameMap = officeMap.querySelector("iframe");
+    let frameMap = officeMap.querySelector("iframe");
     if(frameMap === null ) {
       frameMap = document.createElement("iframe");
       frameMap.width = 1200;
